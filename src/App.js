@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Grid, Row, Col} from 'react-bootstrap';
+import Quadrant from './components/Quadrant';
 import logo from './logo.svg';
 import './App.css';
 
@@ -15,12 +16,12 @@ class App extends Component {
                 <div className="container">
                     <Grid>
                         <Row>
-                            <Col md={6}>Hey</Col>
-                            <Col md={6}>Hey</Col>
+                            <Quadrant />
+                            <Quadrant />
                         </Row>
                         <Row>
-                            <Col md={6}>Hey</Col>
-                            <Col md={6}>Hey</Col>
+                            <Quadrant />
+                            <Quadrant />
                         </Row>
                     </Grid>
                 </div>
