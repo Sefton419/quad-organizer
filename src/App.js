@@ -9,18 +9,30 @@ import {AppBar, Toolbar} from '@material-ui/core';
 class App extends Component {
     state = {
         list1: [
-            'put out the fire in the server room',
-            'fend off the company from army of ninjas'
+            {string: 'put out the fire in the server room', checked: false},
+            {string: 'fend off the company from army of ninjas', checked: false}
         ],
-        list2: ['update my OS', 'read all of my emails'],
+        list2: [
+            {string: 'update my OS', checked: false},
+            {string: 'read all of my emails', checked: false}
+        ],
         list3: [
-            'write documentation for new API',
-            'make sure JIRA tasks are marked off as done'
+            {string: 'write documentation for new API', checked: false},
+            {string: 'make sure JIRA tasks are marked off as done', checked: false}
         ],
-        list4: ['play Street Fighters for 2 hrs with friend']
+        list4: [{string: 'play Street Fighters for 2 hrs with friend', checked: false}]
     };
+
+    toggleListItemChecked = (event, list, num, i) => {
+        const checked = event.target.checked;
+        list[i].checked = checked;
+        this.setState({['list' + num]: list});
+        console.log(this.state);
+    };
+
     render() {
         const {list1, list2, list3, list4} = this.state;
+        const {toggleListItemChecked} = this;
         return (
             <div className="App">
                 <AppBar position="static">
@@ -29,12 +41,24 @@ class App extends Component {
                 <div className="container">
                     <Grid>
                         <Row>
-                            <Quadrant list={list1} />
-                            <Quadrant list={list2} />
+                            <Quadrant
+                                list={list1}
+                                toggleListItemChecked={toggleListItemChecked}
+                            />
+                            <Quadrant
+                                list={list2}
+                                toggleListItemChecked={toggleListItemChecked}
+                            />
                         </Row>
                         <Row>
-                            <Quadrant list={list3} />
-                            <Quadrant list={list4} />
+                            <Quadrant
+                                list={list3}
+                                toggleListItemChecked={toggleListItemChecked}
+                            />
+                            <Quadrant
+                                list={list4}
+                                toggleListItemChecked={toggleListItemChecked}
+                            />
                         </Row>
                     </Grid>
                 </div>

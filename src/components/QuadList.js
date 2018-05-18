@@ -9,28 +9,30 @@ import {
 } from '@material-ui/core/';
 import './QuadList.css';
 
-class QuadList extends Component {
-    mapListToCard = () => {
-        const {list} = this.props;
-        return list.map((item, i) => (
-            <ListItem key={i} dense button>
-                <Checkbox disableRipple />
-                <ListItemText primary={item} />
+const QuadList = ({list, toggleListItemChecked}) => {
+    const mapListToCard = arr => {
+        return arr.map((item, i) => (
+            <ListItem key={i} dense button disableRipple>
+                <Checkbox
+                    disableRipple
+                    onChange={event => {
+                        toggleListItemChecked(event, list, 1, i);
+                    }}
+                />
+                <ListItemText primary={item.string} />
             </ListItem>
         ));
     };
 
-    render() {
-        return (
-            <div className="list">
-                <Row>
-                    <Col md={12}>
-                        <List>{this.mapListToCard()}</List>
-                    </Col>
-                </Row>
-            </div>
-        );
-    }
-}
+    return (
+        <div className="list">
+            <Row>
+                <Col md={12}>
+                    <List>{mapListToCard(list)}</List>
+                </Col>
+            </Row>
+        </div>
+    );
+};
 
 export default QuadList;
