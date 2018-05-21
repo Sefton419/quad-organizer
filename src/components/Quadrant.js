@@ -5,6 +5,15 @@ import QuadList from './QuadList';
 import './Quadrant.css';
 
 class Quadrant extends Component {
+    state = {
+        displayTaskInput: false
+    };
+
+    toggleTaskInput = () => {
+        const {displayTaskInput} = this.state;
+        this.setState({displayTaskInput: !displayTaskInput});
+    };
+
     render() {
         const {list, listNum, toggleListItemChecked} = this.props;
 
@@ -20,7 +29,13 @@ class Quadrant extends Component {
                             />
                         </CardContent>
                         <CardActions>
-                            <Button size="small">New Task</Button>
+                            <Button
+                                size="small"
+                                onClick={() => {
+                                    this.toggleTaskInput();
+                                }}>
+                                New Task
+                            </Button>
                         </CardActions>
                     </Card>
                 </Col>

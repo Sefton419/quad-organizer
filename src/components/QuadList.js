@@ -7,20 +7,20 @@ import {
     ListItemText,
     Checkbox
 } from '@material-ui/core/';
+import QuadListItem from './QuadListItem';
 import './QuadList.css';
 
 const QuadList = ({list, listNum, toggleListItemChecked}) => {
     const mapListToCard = arr => {
         return arr.map((item, i) => (
-            <ListItem key={i} dense button disableRipple>
-                <Checkbox
-                    disableRipple
-                    onChange={event => {
-                        toggleListItemChecked(event, list, listNum, i);
-                    }}
-                />
-                <ListItemText primary={item.string} />
-            </ListItem>
+            <QuadListItem
+                key={i}
+                list={list}
+                listItem={item}
+                listNum={listNum}
+                toggleListItemChecked={toggleListItemChecked}
+                i={i}
+            />
         ));
     };
 

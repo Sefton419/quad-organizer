@@ -23,11 +23,29 @@ class App extends Component {
         list4: [{string: 'play Street Fighters for 2 hrs with friend', checked: false}]
     };
 
-    toggleListItemChecked = (event, list, num, i) => {
-        const checked = event.target.checked;
-        list[i].checked = checked;
-        this.setState({['list' + num]: list});
+    createListItem = (string, list, listNum) => {
+        const listItem = {
+            string,
+            checked: false
+        };
+        const updatedList = list.push(listItem);
+        this.updateList(listNum, updatedList);
+    };
+
+    deleteListItems = listNum => {
+        const updatedList = this.state.filter(item => !item.checked);
+        this.updateList(listNum, updatedList);
+    };
+
+    toggleListItemChecked = (event, list, listNum, i) => {
+        // i is the index of list item in specific list array
+        list[i].checked = event.target.checked;
+        this.updateList(listNum, list);
         console.log(this.state);
+    };
+
+    updateList = (listNum, list) => {
+        this.setState({['list' + listNum]: list});
     };
 
     render() {
