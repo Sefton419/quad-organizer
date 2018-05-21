@@ -28,8 +28,10 @@ class App extends Component {
             string,
             checked: false
         };
-        const updatedList = list.push(listItem);
-        this.updateList(listNum, updatedList);
+        console.log('listItem: ', listItem);
+        list.push(listItem);
+        console.log('updatedList:', list);
+        this.updateList(listNum, list);
     };
 
     deleteListItems = listNum => {
@@ -50,7 +52,7 @@ class App extends Component {
 
     render() {
         const {list1, list2, list3, list4} = this.state;
-        const {toggleListItemChecked} = this;
+        const {toggleListItemChecked, createListItem} = this;
         return (
             <div className="App">
                 <AppBar position="static">
@@ -63,11 +65,13 @@ class App extends Component {
                                 list={list1}
                                 listNum={1}
                                 toggleListItemChecked={toggleListItemChecked}
+                                createListItem={createListItem}
                             />
                             <Quadrant
                                 list={list2}
                                 listNum={2}
                                 toggleListItemChecked={toggleListItemChecked}
+                                createListItem={createListItem}
                             />
                         </Row>
                         <Row>
@@ -75,11 +79,13 @@ class App extends Component {
                                 list={list3}
                                 listNum={3}
                                 toggleListItemChecked={toggleListItemChecked}
+                                createListItem={createListItem}
                             />
                             <Quadrant
                                 list={list4}
                                 listNum={4}
                                 toggleListItemChecked={toggleListItemChecked}
+                                createListItem={createListItem}
                             />
                         </Row>
                     </Grid>
