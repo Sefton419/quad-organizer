@@ -6,7 +6,7 @@ import './Quadrant.css';
 
 class Quadrant extends Component {
     render() {
-        const {list, toggleListItemChecked} = this.props;
+        const {list, listNum, toggleListItemChecked} = this.props;
 
         return (
             <div className="quadrant">
@@ -15,6 +15,7 @@ class Quadrant extends Component {
                         <CardContent>
                             <QuadList
                                 list={list}
+                                listNum={listNum}
                                 toggleListItemChecked={toggleListItemChecked}
                             />
                         </CardContent>

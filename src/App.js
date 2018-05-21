@@ -43,20 +43,24 @@ class App extends Component {
                         <Row>
                             <Quadrant
                                 list={list1}
+                                listNum={1}
                                 toggleListItemChecked={toggleListItemChecked}
                             />
                             <Quadrant
                                 list={list2}
+                                listNum={2}
                                 toggleListItemChecked={toggleListItemChecked}
                             />
                         </Row>
                         <Row>
                             <Quadrant
                                 list={list3}
+                                listNum={3}
                                 toggleListItemChecked={toggleListItemChecked}
                             />
                             <Quadrant
                                 list={list4}
+                                listNum={4}
                                 toggleListItemChecked={toggleListItemChecked}
                             />
                         </Row>
