@@ -1,5 +1,4 @@
 import React from 'react';
-import {Row, Col} from 'react-bootstrap';
 import {ListItem, ListItemText, Checkbox} from '@material-ui/core/';
 import './QuadListItem.css';
 

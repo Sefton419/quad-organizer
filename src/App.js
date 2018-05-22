@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Grid, Row, Col} from 'react-bootstrap';
+import {Button} from '@material-ui/core';
 import Quadrant from './components/Quadrant';
-import logo from './logo.svg';
 import './App.css';
 
 import {AppBar, Toolbar} from '@material-ui/core';
@@ -9,41 +9,61 @@ import {AppBar, Toolbar} from '@material-ui/core';
 class App extends Component {
     state = {
         list1: [
-            {string: 'put out the fire in the server room', checked: false},
-            {string: 'fend off the company from army of ninjas', checked: false}
+            {id: 'abcd', string: 'put out the fire in the server room', checked: false},
+            {
+                id: 'uvwx',
+                string: 'fend off the company from army of ninjas',
+                checked: false
+            }
         ],
         list2: [
-            {string: 'update my OS', checked: false},
-            {string: 'read all of my emails', checked: false}
+            {id: 'efgh', string: 'update my OS', checked: false},
+            {id: 'uvwx', string: 'read all of my emails', checked: false}
         ],
         list3: [
-            {string: 'write documentation for new API', checked: false},
-            {string: 'make sure JIRA tasks are marked off as done', checked: false}
+            {id: 'ijkl', string: 'write documentation for new API', checked: false},
+            {
+                id: 'mnop',
+                string: 'make sure JIRA tasks are marked off as done',
+                checked: false
+            }
         ],
-        list4: [{string: 'play Street Fighters for 2 hrs with friend', checked: false}]
+        list4: [
+            {
+                id: 'qrst',
+                string: 'play Street Fighters for 2 hrs with friend',
+                checked: false
+            }
+        ]
     };
 
     createListItem = (string, list, listNum) => {
         const listItem = {
+            id: Math.random()
+                .toString(36)
+                .substring(7),
             string,
             checked: false
         };
-        console.log('listItem: ', listItem);
         list.push(listItem);
-        console.log('updatedList:', list);
         this.updateList(listNum, list);
     };
 
     deleteListItems = listNum => {
-        const updatedList = this.state.filter(item => !item.checked);
-        this.updateList(listNum, updatedList);
+        const {state} = this;
+        const newState = {};
+        Object.keys(state).forEach(list => {
+            newState[list] = state[list].filter(item => {
+                return !item.checked;
+            });
+        });
+        this.setState({...newState});
     };
 
     toggleListItemChecked = (event, list, listNum, i) => {
         // i is the index of list item in specific list array
         list[i].checked = event.target.checked;
         this.updateList(listNum, list);
-        console.log(this.state);
     };
 
     updateList = (listNum, list) => {
@@ -52,7 +72,7 @@ class App extends Component {
 
     render() {
         const {list1, list2, list3, list4} = this.state;
-        const {toggleListItemChecked, createListItem} = this;
+        const {toggleListItemChecked, createListItem, deleteListItems} = this;
         return (
             <div className="App">
                 <AppBar position="static">
@@ -87,6 +107,16 @@ class App extends Component {
                                 toggleListItemChecked={toggleListItemChecked}
                                 createListItem={createListItem}
                             />
+                        </Row>
+                        <Row>
+                            <Col md={6} sm={6}>
+                                <Button
+                                    onClick={() => {
+                                        deleteListItems();
+                                    }}>
+                                    Delete Finished Tasks
+                                </Button>
+                            </Col>
                         </Row>
                     </Grid>
                 </div>

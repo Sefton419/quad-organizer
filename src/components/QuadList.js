@@ -1,27 +1,23 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Row, Col} from 'react-bootstrap';
-import {
-    List,
-    ListItem,
-    ListItemSecondaryAction,
-    ListItemText,
-    Checkbox
-} from '@material-ui/core/';
+import {List} from '@material-ui/core/';
 import QuadListItem from './QuadListItem';
 import './QuadList.css';
 
 const QuadList = ({list, listNum, toggleListItemChecked}) => {
     const mapListToCard = arr => {
-        return arr.map((item, i) => (
-            <QuadListItem
-                key={i}
-                list={list}
-                listItem={item}
-                listNum={listNum}
-                toggleListItemChecked={toggleListItemChecked}
-                i={i}
-            />
-        ));
+        return arr.map((item, i) => {
+            return (
+                <QuadListItem
+                    key={item.id}
+                    list={list}
+                    listItem={item}
+                    listNum={listNum}
+                    toggleListItemChecked={toggleListItemChecked}
+                    i={i}
+                />
+            );
+        });
     };
 
     return (
